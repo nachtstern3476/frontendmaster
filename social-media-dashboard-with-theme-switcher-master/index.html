@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <title>Frontend Mentor | Social Media Dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+
+  <style>
+    :root {
+      --text-primary: hsl(228, 34%, 66%);
+      --text-secondary: hsl(0, 0%, 100%);
+      --background-color: hsl(230, 17%, 14%);
+      --background-card-color: hsl(228, 28%, 20%);
+      --background-pattern-color: hsl(232, 19%, 15%);
+      --background-toggle-color: linear-gradient(to right, hsl(210, 78%, 56%), hsl(146, 68%, 55%))
+    }
+
+    [data-theme="light"] {
+      --text-primary: hsl(228, 12%, 44%);
+      --text-secondary: hsl(230, 17%, 14%);
+      --background-color: hsl(0, 0%, 100%);
+      --background-card-color: hsl(227, 47%, 96%);
+      --background-pattern-color: hsl(225, 100%, 98%);
+      --background-toggle-color: hsl(230, 22%, 74%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: all 400ms ease;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    body {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      font-family: 'Inter', Helvetica, sans-serif;
+      font-size: 14px;
+      background-color: var(--background-color);
+      color: var(--text-primary);
+    }
+
+    .container {
+      margin: 0 1.5rem;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 15rem;
+      width: 100%;
+      background-color: var(--background-pattern-color);
+      border-bottom-left-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+      z-index: -1;
+
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      margin: 2.5rem 0;
+    }
+
+    .header .heading::after {
+      content: "";
+      display: block;
+      margin: 1.5rem 0;
+      border-bottom: 1px solid var(--text-primary);
+    }
+
+    .header .heading,
+    .toggle-container span {
+      font-weight: 700;
+    }
+
+    .header .heading h2 {
+      font-size: 1.5rem;
+      margin-bottom: .2rem;
+      color: var(--text-secondary);
+    }
+
+    .toggle-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toggle-container button {
+      width: 3rem;
+      height: 1.5rem;
+      border: 0;
+      outline: none;
+
+      background: var(--background-toggle-color);
+      border-radius: 100px;
+    }
+
+    .toggle-container button span {
+      background: var(--background-color);
+      width: 1.2rem;
+      height: 1.2rem;
+      margin-left: .2rem;
+      border-radius: 100%;
+      display: block;
+
+      transition: all 400ms ease;
+    }
+
+    .toggle-container button span.active {
+      margin-left: calc(100% - (1.2rem + .2rem));
+    }
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      margin: 2rem 0;
+    }
+
+    .card {
+      background-color: var(--background-card-color);
+      border-radius: 4px;
+    }
+
+    .card .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    .account-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .account-info .account {
+      margin-left: .5rem;
+      font-size: .8rem;
+    }
+
+    .account-detail {
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .account-detail h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .account-detail span {
+      letter-spacing: .3rem;
+    }
+
+    .overview-heading {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .overview-header,
+    .overview-body {
+      display: flex;
+      justify-content: space-between;
+      align-self: stretch;
+
+      padding: 0 1.5rem
+    }
+
+    .overview-header {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .overview-body {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    .account-trend {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .5rem;
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .border-top-facebook {
+      border-top: 4px solid hsl(208, 92%, 53%);
+    }
+
+    .border-top-twitter {
+      border-top: 4px solid hsl(203, 89%, 53%);
+    }
+
+    .border-top-instagram::before {
+      content: "";
+      display: block;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(to right, hsl(37, 97%, 70%), hsl(329, 70%, 58%));
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .border-top-youtube {
+      border-top: 4px solid hsl(348, 97%, 39%);
+    }
+
+    .trend-up {
+      color: hsl(163, 72%, 41%);
+    }
+
+    .trend-down {
+      color: hsl(356, 69%, 56%);
+    }
+
+    @media screen and (min-width: 980px) {
+      .header {
+        justify-content: space-between;
+        flex-direction: row;
+      }
+
+      .header .heading::after {
+        content: "";
+        border: none;
+      }
+
+      .toggle-container {
+        column-gap: 1rem;
+      }
+
+      .card-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: calc((100% - 4.5rem) / 4);
+      }
+    }
+
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+
+      padding: 1.5rem 1rem;
+      background-color: var(--background-card-color);
+      color: var(--text-primary);
+    }
+
+    .attribution a {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+
+<body data-theme="dark">
+  <div class="container">
+    <div class="header">
+      <div class="heading">
+        <h2>Social Media Dashboard</h2>
+        <span>Total Followers: 23,004</span>
+      </div>
+      <div class="toggle-container">
+        <span>Dark Mode</span>
+        <button class="toggle"><span></span></button>
+      </div>
+    </div>
+
+    <div class="card-container">
+      <div class="card border-top-facebook">
+        <div class="card-body">
+          <div class="account-info">
+            <div class="account-icon">
+              <img src="images/icon-facebook.svg" alt="facebook icon">
+            </div>
+            <div class="account">@nanthanf</div>
+          </div>
+          <div class="account-detail">
+            <h2>1987</h2>
+            <span>FOLLOWERS</span>
+          </div>
+          <div class="account-trend">
+            <img src="images/icon-up.svg" alt="down icon">
+            <span>12 Today</span>
+          </div>
+        </div>
+      </div>
+      <div class="card border-top-twitter">
+        <div class="card-body">
+          <div class="account-info">
+            <div class="account-icon">
+              <img src="images/icon-twitter.svg" alt="twitter icon">
+            </div>
+            <div class="account">@nanthanf</div>
+          </div>
+          <div class="account-detail">
+            <h2>1044</h2>
+            <span>FOLLOWERS</span>
+          </div>
+          <div class="account-trend trend-up">
+            <img src="images/icon-up.svg" alt="down icon">
+            <span>99 Today</span>
+          </div>
+        </div>
+      </div>
+      <div class="card border-top-instagram">
+        <div class="card-body">
+          <div class="account-info">
+            <div class="account-icon">
+              <img src="images/icon-instagram.svg" alt="instagram icon">
+            </div>
+            <div class="account">@realnanthanf</div>
+          </div>
+          <div class="account-detail">
+            <h2>11k</h2>
+            <span>FOLLOWERS</span>
+          </div>
+          <div class="account-trend trend-up">
+            <img src="images/icon-up.svg" alt="down icon">
+            <span>1099 Today</span>
+          </div>
+        </div>
+      </div>
+      <div class="card border-top-youtube">
+        <div class="card-body">
+          <div class="account-info">
+            <div class="account-icon">
+              <img src="images/icon-youtube.svg" alt="youtube icon">
+            </div>
+            <div class="account">Nathan F.</div>
+          </div>
+          <div class="account-detail">
+            <h2>8239</h2>
+            <span>SUBSCRIBERS</span>
+          </div>
+          <div class="account-trend trend-down">
+            <img src="images/icon-down.svg" alt="down icon">
+            <span>144 Today</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overview-heading">
+      <h2>Overview - Today</h2>
+    </div>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Page Views</span>
+            <img src="images/icon-facebook.svg" alt="facebook icon">
+          </div>
+          <div class="overview-body">
+            <h2>87</h2>
+            <div class="account-trend trend-up">
+              <img src="images/icon-up.svg" alt="down icon">
+              <span>3%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Likes</span>
+            <img src="images/icon-facebook.svg" alt="facebook icon">
+          </div>
+          <div class="overview-body">
+            <h2>52</h2>
+            <div class="account-trend trend-down">
+              <img src="images/icon-down.svg" alt="down icon">
+              <span>2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Likes</span>
+            <img src="images/icon-instagram.svg" alt="instagram icon">
+          </div>
+          <div class="overview-body">
+            <h2>5462</h2>
+            <div class="account-trend trend-up">
+              <img src="images/icon-up.svg" alt="down icon">
+              <span>2257%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Profile Views</span>
+            <img src="images/icon-instagram.svg" alt="instagram icon">
+          </div>
+          <div class="overview-body">
+            <h2>52k</h2>
+            <div class="account-trend trend-up">
+              <img src="images/icon-up.svg" alt="down icon">
+              <span>1375%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Retweets</span>
+            <img src="images/icon-twitter.svg" alt="twitter icon">
+          </div>
+          <div class="overview-body">
+            <h2>117</h2>
+            <div class="account-trend trend-up">
+              <img src="images/icon-up.svg" alt="down icon">
+              <span>303%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Likes</span>
+            <img src="images/icon-twitter.svg" alt="twitter icon">
+          </div>
+          <div class="overview-body">
+            <h2>507</h2>
+            <div class="account-trend trend-up">
+              <img src="images/icon-up.svg" alt="down icon">
+              <span>553%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Likes</span>
+            <img src="images/icon-youtube.svg" alt="youtube icon">
+          </div>
+          <div class="overview-body">
+            <h2>107</h2>
+            <div class="account-trend trend-down">
+              <img src="images/icon-down.svg" alt="down icon">
+              <span>19%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <div class="overview-header">
+            <span>Total Views</span>
+            <img src="images/icon-youtube.svg" alt="youtube icon">
+          </div>
+          <div class="overview-body">
+            <h2>1407</h2>
+            <div class="account-trend trend-down">
+              <img src="images/icon-down.svg" alt="down icon">
+              <span>12%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="https://github.com/nacthstern3476">nacthstern3476</a>.
+  </div>
+</body>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('.toggle');
+    button.addEventListener('click', e => {
+      e.preventDefault();
+      const isActive = button.querySelector('span.active');
+      if (isActive === undefined || isActive === null) {
+        document.body.dataset.theme = 'light';
+        button.querySelector('span').classList.add('active');
+      } else {
+        document.body.dataset.theme = 'dark';
+        button.querySelector('span').classList.remove('active');
+      }
+    });
+  });
+</script>
+
+</html>
