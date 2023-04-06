@@ -34,8 +34,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution url](https://nachtstern3476.github.io/frontendmaster/social-media-dashboard-with-theme-switcher-master)
-- Live Site URL: [Live site url](https://nachtstern3476.github.io/frontendmaster/social-media-dashboard-with-theme-switcher-master/index.html)
+- Solution URL: [Solution url](https://github.com/nachtstern3476/frontendmaster/tree/master/social-media-dashboard-with-theme-switcher-master)
+- Live Site URL: [Live site url](https://nachtstern3476.github.io/frontendmaster/social-media-dashboard-with-theme-switcher-master)
 
 ## My process
 

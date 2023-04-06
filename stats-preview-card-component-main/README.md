@@ -26,8 +26,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Solution url](https://github.com/nachtstern3476/frontendmaster/stats-preview-card-component-main)
-- Live Site URL: [Live site url](https://nachtstern3476.github.io/frontendmaster/stats-preview-card-component-main/index.html)
+- Solution URL: [Solution url](https://github.com/nachtstern3476/frontendmaster/tree/master/stats-preview-card-component-main)
+- Live Site URL: [Live site url](https://nachtstern3476.github.io/frontendmaster/stats-preview-card-component-main)
 
 ## My process
 
