@@ -1,0 +1,272 @@
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("./../fonts/HankenGrotesk-VariableFont_wght.ttf") format("truetype");
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-weight: 500;
+  background: hsl(0, 0%, 100%);
+  -webkit-font-smoothing: antialiased;
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 736px;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  padding: 1rem 3rem;
+  text-align: center;
+  color: hsl(0, 0%, 100%);
+  background: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+header > p {
+  color: hsl(241, 100%, 89%);
+  font-weight: 700;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 0.3rem;
+  margin: 1rem auto;
+  width: 7.8rem;
+  height: 7.8rem;
+  border-radius: 100px;
+  background: linear-gradient(hsla(256, 72%, 46%, 1), hsla(241, 72%, 46%, 0));
+}
+
+.score-container h1 {
+  line-height: 1;
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.score-container p {
+  color: hsl(241, 100%, 89%);
+  font-size: 0.9rem;
+}
+
+.score-summary {
+  margin: 1rem 0;
+}
+
+.score-summary p:nth-child(1) {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.score-summary p:nth-child(2) {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: hsl(241, 100%, 89%);
+}
+
+.summary-container {
+  padding: 1rem 2rem;
+}
+
+.summary-container > p {
+  font-size: 1.1rem;
+  color: hsl(224, 30%, 27%);
+  font-weight: 700;
+}
+
+.cards-container {
+  padding: 1rem 0;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: hsl(221, 100%, 96%);
+  background-color: hsl(241, 100%, 89%);
+}
+
+.card:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.card .summary-type {
+  display: flex;
+  font-weight: 700;
+  column-gap: 0.6rem;
+}
+
+.card .summary-result {
+  font-weight: 800;
+  color: hsla(224, 30%, 27%, 0.6);
+}
+
+.card .summary-result span {
+  color: hsl(224, 30%, 27%);
+}
+
+.card.reaction {
+  color: hsl(0, 100%, 67%);
+  background-color: hsla(0, 100%, 67%, 0.1);
+}
+
+.card.memory {
+  color: hsl(39, 100%, 56%);
+  background-color: hsla(39, 100%, 56%, 0.1);
+}
+
+.card.verbal {
+  color: hsl(166, 100%, 37%);
+  background-color: hsla(166, 100%, 37%, 0.1);
+}
+
+.card.visual {
+  color: hsl(234, 85%, 45%);
+  background-color: hsla(234, 85%, 45%, 0.1);
+}
+
+.btn {
+  display: block;
+  background-color: hsl(224, 30%, 27%);
+  width: 100%;
+  outline: none;
+  padding: 1rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: hsl(221, 100%, 96%);
+  border-radius: 100px;
+  border: none;
+}
+
+.btn:hover,
+.btn:active {
+  background-image: linear-gradient(hsl(252, 100%, 67%), hsl(241, 81%, 54%));
+}
+
+footer.attribution {
+  width: 100%;
+  color: #fff;
+  padding: 1rem;
+  font-size: 11px;
+  text-align: center;
+  background-color: hsl(241, 81%, 54%);
+}
+
+footer.attribution a {
+  color: #fff;
+}
+
+@media screen and (min-width: 680px) {
+  .container {
+    flex-direction: row;
+    height: 100%;
+    max-height: 512px;
+    max-width: 736px;
+    box-shadow: 0.3px 0.5px 0.7px hsl(221, 100%, 96%),
+      1.5px 2.9px 3.7px -0.4px hsl(221, 100%, 96%),
+      2.7px 5.4px 6.8px -0.7px hsl(221, 100%, 96%),
+      4.5px 8.9px 11.2px -1.1px hsl(221, 100%, 96%),
+      7.1px 14.3px 18px -1.4px hsl(221, 100%, 96%),
+      11.2px 22.3px 28.1px -1.8px hsl(221, 100%, 96%),
+      17px 33.9px 42.7px -2.1px hsl(221, 100%, 96%),
+      25px 50px 62.9px -2.5px hsl(221, 100%, 96%);
+  }
+
+  .container,
+  header {
+    border-radius: 2rem;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4.5rem;
+    width: 50%;
+  }
+
+  header > p {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .score-container {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .score-container h1 {
+    font-size: 4rem;
+  }
+
+  .score-container p,
+  .score-summary p:nth-child(2) {
+    font-size: 1rem;
+  }
+
+  .score-summary p:nth-child(1) {
+    font-size: 2rem;
+  }
+
+  .summary-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    border-radius: 2rem;
+    background-color: white;
+  }
+
+  .cards-container {
+    padding: 2rem 0;
+  }
+
+  footer.attribution {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
+}
